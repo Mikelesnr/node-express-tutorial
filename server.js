@@ -1,15 +1,13 @@
 //expreess server
-// This is a simple Express server that listens on port 3000 or the port specified in the environment variable PORT.
 const express = require('express');
 const app = express();
 
-app.get("/", (req, res) => 
-    {
-        res.send("Hello World");
-    });
+const port = process.env.PORT || 3000;
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server is running on port 3000");
-});
+app.use('/', require('./routes/index'));
 
-console.log("Server is listening on port",+ (process.env.PORT || 3000));
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+})
+
+console.log(`Server is listening on port ${port}`);
